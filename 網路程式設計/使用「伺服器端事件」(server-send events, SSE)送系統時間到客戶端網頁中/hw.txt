@@ -1,0 +1,23 @@
+The attached zip file contains two example html files: banner-page.html and page01.html. CSS3 based banner is shown in banner-page.html  while page01.html contains example javscript code receiving SSE data from server.
+
+Two files are to be done in this homework, the first is a server code serving http-https-sse protocols while the second is a html file receiving periodic sse message from the server and display the message in the banner.
+
+For the NodeJS server code, only four libraries are needed: fs, http, https, url, no need to 'require' more packages.
+
+Submit the server code and the index.html files.
+
+附上兩個html檔案，第一個 banner-page.html 示範用CSS3動畫實作跑馬燈。第二個網頁page01.html 示範由網頁中接受伺服器送來的SSE資料。
+
+這兩個 html 檔案 是示範用，作業問題是要上傳兩個檔案: 以 NodeJS 所寫的 http-https-sse 伺服器程式 還有 示範用的 index.html 檔案。
+
+注意；伺服器端使用的NodeJS函式庫只有 fs, http, https, url 等四個，不能使用其他函式庫。
+
+作法提示：
+
+1. 由第一個作業的伺服器程式開始，成了處理檔案要求的函式外，再加上處理 sse 的要求函式。
+
+2. 在伺服器端處理 sse 要求的函式 範例 可以參考 https://jasonbutz.info/2018/08/server-sent-events-with-node/
+
+3. 在 index.html 中 的 JavaScript 程式 要有開啟，接受 sse 的程式。範例除了所給的 page01.html 中的程式外，也可以參考: https://medium.com/@moinism/using-nodejs-for-uni-directional-event-streaming-sse-c80538e6e82e
+
+4. 上傳所寫的 http-https-sse 伺服器程式碼加上  index.html 兩個檔案。
