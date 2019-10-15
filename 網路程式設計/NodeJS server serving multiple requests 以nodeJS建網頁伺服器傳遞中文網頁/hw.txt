@@ -1,0 +1,27 @@
+1. Please create a NodeJS based web server serving both http and https protocols. The server should be able to send the example html file as attached in the zip file.
+
+2. The attached example html file (20190913-HW01.html) contains a reference to a picture file called kiwi.png.
+
+3. The server code is supposed to send requested html file first and the referred picture file (kiwi.png) later. In this homework, there's no need to modify the example files. When working properly, in the browser the html file would display a still kiwi image as well as a moving kiwi picture.
+
+4. Suppose the http server listens at port 8000 and the https server at port 8080, in web browser either urls http://localhost:8000/20190913-HW01.html or https://localhost:8080/20190913-HW01.html can leads to receiving the same 20190913-HW01.html file and after processing the html file, the browser will request kiwi.png image file through either http://localhost:8000/kiwi.png or https://localhost:8080/kiwi.png depending on the original request.
+
+Submission deadline: 2019/11/11 00:00
+
+Please submit the server code only.
+
+1. 請以 nodeJS 建立網頁伺服器(http與https) 傳遞中文網頁，網頁範例及相關檔案在所附.zip檔案中。
+
+2. 請注意網頁檔案名稱為 20190913-HW01.html 而網頁中會需要用到 kiwi.png。
+
+3. 示範時確定瀏覽器下載網頁後會有圖片，另外動態圖片也可以移動。
+
+4. 例如網頁伺服器 http 在 port 8000 而 https 在 port 8080 ，瀏覽器用　http://localhost:8000/20190913-HW01.html 或是　https://localhost:8080/20190913-HW01.html 都會取得　20190913-HW01.html 檔案，
+
+在取得這個檔案後，瀏覽器會自動再要求　http://localhost:8000/kiwi.png 或 https://localhost:8080/kiwi.png。
+
+因此，網頁伺服器要能處理瀏覽器送來的 request URL ，依照這個 URL 字串送出檔案內容。
+
+繳交期限在期中考試週開始第一天2019/11/11 00:00 前結束。
+
+請上傳 以 NodeJS 所寫的 http-https 伺服器程式碼。
