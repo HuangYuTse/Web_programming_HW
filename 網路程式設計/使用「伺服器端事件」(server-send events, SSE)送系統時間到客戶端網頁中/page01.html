@@ -4,17 +4,59 @@
 <meta charset="utf-8" />
   <title>Web Page with SSE Example</title>
   <!-- copyright by Isaac Tsai 2019/09/13 -->
+  <style>
+    .tiker-wrap {
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        overflow: hidden;
+        height: 4rem;
+        background-color: rgba(51, 51, 51, 0.5);
+        padding-left: 100%;
+      }
+    .tiker {
+        position: absolute;
+        display: inline-block;
+        height: 4rem;
+        line-height: 4rem;
+        font-size: 3rem;
+        color: white;
+        white-space: nowrap;
+        padding-right: 100%;
+       }
+     @keyframes tiker {
+        0% { -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+           }
+      100% { -webkit-transform: translate3d(-100%, 0, 0);
+                     transform: translate3d(-100%, 0, 0);
+           }
+      }
+    .tiker {
+        animation-name: tiker;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        animation-duration: 80s;
+           }
+    .tiker:hover {
+        animation-play-state: paused;
+           }
   </style>
   <script>
   	const evtSource = new EventSource('/sse');
   	evtSource.onmessage = function(event) {
       console.log('D='+event.data);
+      let element = document.getElementById("tiker");
+      element.innerHTML = event.data;
     }
   </script>
 </head>
 <body>
 <h1>這個網頁額外接受「伺服器端事件」送來的訊息</h1>
-<p>「伺服器端事件」(server side event, SSE)</p>
+<div class="tiker-wrap">
+  <div class="tiker" id="tiker">
+  </div>
+</div>
 <p>要打開網頁主控台才能看見送來訊息內容</p>
 </body>
 </html>
