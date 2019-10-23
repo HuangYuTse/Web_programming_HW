@@ -1,0 +1,280 @@
+1. The following code is an http server that provides a file submission form when requested by a web browser through URL http://localhost:8080/
+
+const http = require('http');
+const server = http.createServer((req, res) => {
+    if (req.method === 'POST') {
+      let body = '';
+      req.on('data', chunk => {
+        body += chunk.toString(); // convert Buffer to string
+      });
+      req.on('end', () => {
+        console.log(body);
+        res.end('Form submitted correctly!');
+      });
+    } else {
+        res.end('<!doctype html>\n<html>\n<body>\n<form action="/" method="post">\nUser Name: <input type="text" name="username" /><br />\nAge: <input type="number" name="age" /><br />\nImage File: <input type="file" name="photo" /><br />\n<button>Upload</button>\n</form>\n</body>\n</html>\n');
+    }
+});
+server.listen(8080);
+2. After specifying user name, age and selecting a file from local disk to be uploaded, clicking on 'upload' button will not actually submit the file, but instead those parameters are logged on server as a string that separated by '&' character. This is because the browser sends the form in 'application/x-www-form-urlencoding' encoding type.
+
+3. Please refer to https://codeburst.io/how-to-handle-multipart-form-data-in-nodejs-file-uploading-in-nodejs-26c0cb88adcf  to see explanations on the different encoding types.
+
+4. The objective of this homework is to create an http/https server that allows the submission of an image file, for example, kiwi.png, and then saves the file to the server. The form in the above example code should be modified in order to submit in 'multipart/form-data' encoding type and the server code should be able to handle the multipart form data submission to save the image file.
+
+5. The server code requires at most five packages: http, https, fs, url, formidable or http, https, fs, url, multiparty.
+
+6. The 'util' package in the example code is only used for displaying debugging information.
+
+7. Please submit ONLY the server javascript code.
+
+Example code one (using 'formidable' package for multipart/form-data processing)
+
+const formidable = require('formidable');
+const http = require('http');
+const fs   = require('fs');
+const util = require('util'); // only used for display file info in util.inspect()
+
+http.createServer(function(req, res) {
+  if (req.url == '/upload' && req.method.toLowerCase() == 'post') { // parse a file upload
+    var form = new formidable.IncomingForm();
+    var fields = [], files = [];
+    form
+    .on('error', function(err){
+        res.writeHead(200, {'content-type':'text/plain'});
+        res.end('error:\n\n'+util.inspect(err));
+    })
+    .on('field', function(field, value){
+        console.log(field, value);
+        fields.push([field, value]);
+    })
+    .on('progress', function(bytesReceived, bytesExpected) {
+        var percent_complete = (bytesReceived / bytesExpected) * 100;
+        console.log(percent_complete.toFixed(2));
+    })
+    .on('file', function(field, file) {
+        console.log(field, file);
+        files.push([field, file]);
+    })
+    .on('end', function(){
+      console.log('-> post done');
+      res.writeHead('200', {'content-type':'text/plain'});
+      res.end('received fields:\n\n'+util.inspect(fields) +'\n\n received files: ' + util.inspect(files));
+    });
+    console.log(req);
+    form.parse(req);
+
+    return;
+  }
+  // show a file upload form
+  res.writeHead(200, {'content-type': 'text/html'});
+  res.end(
+    '<form action="/upload" enctype="multipart/form-data" method="post">'+
+    'User Name: <input type="text" name="username"><br />'+
+    'Some Number: <input type="number" name="age"><br />'+
+    'Image File: <input type="file" name="photo" multiple="multiple"><br />'+
+    '<input type="submit" value="Upload">'+
+    '</form>'
+  );
+}).listen(8080);
+Example code two (using 'multiparty' package for multipart/form-data processing)
+
+const multiparty = require('multiparty');
+const http = require('http');
+const fs   = require('fs');
+const util = require('util'); // only used for display file info in util.inspect()
+
+http.createServer(function(req, res) {
+  if (req.url === '/upload' && req.method === 'POST') {
+    // parse a file upload
+    var form = new multiparty.Form();
+    var fields = [], files = [];
+    var count = 0;
+    form.on('error', function(err) {
+        console.log('Error parsing form: ' + err.stack);
+        res.writeHead(200, {'content-type':'text/plain'});
+        res.end('error:\n\n'+util.inspect(err));
+    })
+    .on('part', function(part) {
+    // *Must* act on the part by reading it
+    // If you want to ignore it, just call "part.resume()"
+        if (!part.filename) { // filename is not defined when this is a field and not a file
+          console.log('Field named ' + part.name);
+          part.resume();
+        }
+        if (part.filename) { // filename is defined when this is a file
+          count++;
+          console.log('File named ' + part.name); // part.name is the name of field
+          part.resume();
+        }
+        part.on('error', function(err) {
+          // what to do when upload error
+        });
+    })
+    .on('field', function(field, value){
+        console.log(field, value);
+        fields.push([field, value]);
+    })
+    .on('close', function() {
+        console.log('Upload completed!');
+        res.writeHead(200, {'content-type': 'text/plain'});
+        res.write('received upload:\n\n');
+        res.end(util.inspect({fields: fields, files: files}));
+      });
+    form.parse(req);
+
+    return;
+  }
+  // show a file upload form
+  res.writeHead(200, {'content-type': 'text/html'});
+  res.end(
+    '<form action="/upload" enctype="multipart/form-data" method="post">'+
+    'User Name: <input type="text" name="username"><br />'+
+    'Some Number: <input type="number" name="somenumber"><br />'+
+    'Image File: <input type="file" name="photo" multiple="multiple"><br />'+
+    '<input type="submit" value="Upload">'+
+    '</form>'
+  );
+}).listen(8080);
+
+
+1. 以下為 http 伺服器程式碼，其行為是當瀏覽器用 URL 例如 http://localhost:8080/ 提出要求後，會回應一份含有上傳檔案表單的網頁。
+
+const http = require('http');
+const server = http.createServer((req, res) => {
+    if (req.method === 'POST') {
+      let body = '';
+      req.on('data', chunk => {
+        body += chunk.toString(); // convert Buffer to string
+      });
+      req.on('end', () => {
+        console.log(body);
+        res.end('Form submitted correctly!');
+      });
+    } else {
+        res.end('<!doctype html>\n<html>\n<body>\n<form action="/" method="post">\nUser Name: <input type="text" name="username" /><br />\nAge: <input type="number" name="age" /><br />\nImage File: <input type="file" name="photo" /><br />\n<button>Upload</button>\n</form>\n</body>\n</html>\n');
+    }
+});
+server.listen(8080);
+2. 使用者收到表單後，填入 user name, age, 並選擇要上傳的檔案，點選 'upload' 按鍵之後，檔案並未實際上傳。所有參數值會被登錄在伺服器上，形式是用 '&' 為分隔號分隔欄位的一長串字串。這表示瀏覽器用 'application/x-www-form-urlencoding'  編碼方式上傳資料。
+
+3. 要多了解各種不同的編碼方式，請參考 https://codeburst.io/how-to-handle-multipart-form-data-in-nodejs-file-uploading-in-nodejs-26c0cb88adcf 
+
+4. 這個作業的目標是建立 http/https 伺服器程式碼接受上傳照片檔案，例如 kiwi.png，並且將上傳的照片檔案存放在指定位置。需要修改範例程式碼中的表單程式才能以 'multipart/form-data'  編碼方式送出資料。而且伺服器端程式碼要能接受 'multipart/form-data'  編碼方式的資料，才能正確地存檔。
+
+5. 伺服器端程式碼至多只能使用五種函式庫： http, https, fs, url, formidable or http, https, fs, url, multiparty.
+
+6. 在範例程式碼中的 'util' 函式庫只用於顯示資料與除錯用，在正式程式碼中不會需要用到。
+
+7. 請只上傳以Javascript 寫的伺服器程式碼。
+
+範例程式碼一 (使用 'formidable' 函式庫處理 multipart/form-data 上傳編碼)
+
+const formidable = require('formidable');
+const http = require('http');
+const fs   = require('fs');
+const util = require('util'); // only used for display file info in util.inspect()
+
+http.createServer(function(req, res) {
+  if (req.url == '/upload' && req.method.toLowerCase() == 'post') { // parse a file upload
+    var form = new formidable.IncomingForm();
+    var fields = [], files = [];
+    form
+    .on('error', function(err){
+        res.writeHead(200, {'content-type':'text/plain'});
+        res.end('error:\n\n'+util.inspect(err));
+    })
+    .on('field', function(field, value){
+        console.log(field, value);
+        fields.push([field, value]);
+    })
+    .on('progress', function(bytesReceived, bytesExpected) {
+        var percent_complete = (bytesReceived / bytesExpected) * 100;
+        console.log(percent_complete.toFixed(2));
+    })
+    .on('file', function(field, file) {
+        console.log(field, file);
+        files.push([field, file]);
+    })
+    .on('end', function(){
+      console.log('-> post done');
+      res.writeHead('200', {'content-type':'text/plain'});
+      res.end('received fields:\n\n'+util.inspect(fields) +'\n\n received files: ' + util.inspect(files));
+    });
+    console.log(req);
+    form.parse(req);
+
+    return;
+  }
+  // show a file upload form
+  res.writeHead(200, {'content-type': 'text/html'});
+  res.end(
+    '<form action="/upload" enctype="multipart/form-data" method="post">'+
+    'User Name: <input type="text" name="username"><br />'+
+    'Some Number: <input type="number" name="age"><br />'+
+    'Image File: <input type="file" name="photo" multiple="multiple"><br />'+
+    '<input type="submit" value="Upload">'+
+    '</form>'
+  );
+}).listen(8080);
+
+
+範例程式碼二 (使用 'multiparty' 函式庫處理 multipart/form-data 上傳編碼)
+
+const multiparty = require('multiparty');
+const http = require('http');
+const fs   = require('fs');
+const util = require('util'); // only used for display file info in util.inspect()
+
+http.createServer(function(req, res) {
+  if (req.url === '/upload' && req.method === 'POST') {
+    // parse a file upload
+    var form = new multiparty.Form();
+    var fields = [], files = [];
+    var count = 0;
+    form.on('error', function(err) {
+        console.log('Error parsing form: ' + err.stack);
+        res.writeHead(200, {'content-type':'text/plain'});
+        res.end('error:\n\n'+util.inspect(err));
+    })
+    .on('part', function(part) {
+    // *Must* act on the part by reading it
+    // If you want to ignore it, just call "part.resume()"
+        if (!part.filename) { // filename is not defined when this is a field and not a file
+          console.log('Field named ' + part.name);
+          part.resume();
+        }
+        if (part.filename) { // filename is defined when this is a file
+          count++;
+          console.log('File named ' + part.name); // part.name is the name of field
+          part.resume();
+        }
+        part.on('error', function(err) {
+          // what to do when upload error
+        });
+    })
+    .on('field', function(field, value){
+        console.log(field, value);
+        fields.push([field, value]);
+    })
+    .on('close', function() {
+        console.log('Upload completed!');
+        res.writeHead(200, {'content-type': 'text/plain'});
+        res.write('received upload:\n\n');
+        res.end(util.inspect({fields: fields, files: files}));
+      });
+    form.parse(req);
+
+    return;
+  }
+  // show a file upload form
+  res.writeHead(200, {'content-type': 'text/html'});
+  res.end(
+    '<form action="/upload" enctype="multipart/form-data" method="post">'+
+    'User Name: <input type="text" name="username"><br />'+
+    'Some Number: <input type="number" name="somenumber"><br />'+
+    'Image File: <input type="file" name="photo" multiple="multiple"><br />'+
+    '<input type="submit" value="Upload">'+
+    '</form>'
+  );
+}).listen(8080);
