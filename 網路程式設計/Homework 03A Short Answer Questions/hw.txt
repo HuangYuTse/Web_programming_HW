@@ -1,0 +1,55 @@
+Submit answers to all the questions in a text file.
+
+Answer the following questions related to NodeJS formidable and multiparty modules:
+
+1.  If the following HTML code is used for file upload, what went wrong and how to correct it?
+
+<form action="/upload" method="post">  
+  Image File:<input type="text" name="photo" />
+  <button type="submit" value="Upload" />
+</form>
+2. What is the default maximum size of uploaded file in 'formidable' module?
+
+3. How to change the maximum size of uploaded file to, for example, 1GB in 'formidable' module?
+
+4. What is the default maximum size of uploaded file in 'multiparty' module?
+
+5. How to change the maximum size of uploaded file to, for example, 1GB in 'multiparty' module?
+
+6. How to obtain the actual number of bytes of the uploaded file in 'formidable' module and in 'multiparty' module?
+
+   Please use a server code snippet to demonstrate that.
+
+7. How to obtain the name of the uploaded file in 'formidable' module and in 'multiparty' module?
+
+   Please use a code snippet to demonstrate that.
+
+8. How to obtain the name of the field in uploaded file in 'formidable' module and in 'multiparty' module?
+
+   Please use a code snippet to demonstrate that.
+
+請以純文字檔上傳以下問題的解答:
+
+1.  若是使用以下的程式碼上傳檔案，會有錯誤，請指出錯誤處並且更正後，寫出正確版本。
+
+<form action="/upload" method="post">  
+  Image File:<input type="text" name="photo" />
+  <button type="submit" value="Upload" />
+</form>
+2. 在 NodeJS 'formidable' 函式庫中，預設的最大上傳檔案大小限制為多少?
+
+3. 在 NodeJS 'formidable' 函式庫中，要如何將上傳檔案大小限制改成自訂的大小，例如 1GB ?
+
+4. 在 NodeJS  'multiparty'  函式庫中，預設的最大上傳檔案大小限制為多少?
+
+5. 在 NodeJS 'multiparty' 函式庫中，要如何將上傳檔案大小限制改成自訂的大小，例如 1GB ?
+
+6. 在 NodeJS 'formidable' 與 'multiparty' 函式庫中，要分別如何取得實際上傳的檔案大小?
+
+   請使用一小段伺服器程式碼說明。
+
+7. 在 NodeJS 'formidable' 與 'multiparty' 函式庫中，要分別如何取得實際上傳的檔案名稱?
+
+請使用一小段伺服器程式碼說明。
+
+8. 在 NodeJS 'formidable' 與 'multiparty' 函式庫中，要分別如何取得上傳檔案欄位的'name' 屬性值?

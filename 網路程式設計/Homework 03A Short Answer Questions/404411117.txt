@@ -1,0 +1,27 @@
+1.  若是使用以下的程式碼上傳檔案，會有錯誤，請指出錯誤處並且更正後，寫出正確版本。
+所有參數值會被登錄在伺服器上，形式是用 '&' 為分隔號分隔欄位的一長串字串。這表示瀏覽器用 'application/x-www-form-urlencoding'  編碼方式上傳資料
+'<form action="/upload" enctype="multipart/form-data" method="post">'+
+    'User Name: <input type="text" name="username"><br />'+
+    'Some Number: <input type="number" name="age"><br />'+
+    'Image File: <input type="file" name="photo" multiple="multiple"><br />'+
+    '<input type="submit" value="Upload">'+
+    '</form>'
+2. 在 NodeJS 'formidable' 函式庫中，預設的最大上傳檔案大小限制為多少?
+default size is 20MB
+3. 在 NodeJS 'formidable' 函式庫中，要如何將上傳檔案大小限制改成自訂的大小，例如 1GB ?
+var form = new formidable.IncomingForm()
+form.maxFileSize = 1024 * 1024 * 1024;
+4. 在 NodeJS  'multiparty'  函式庫中，預設的最大上傳檔案大小限制為多少?
+default size is 2MB.
+5. 在 NodeJS 'multiparty' 函式庫中，要如何將上傳檔案大小限制改成自訂的大小，例如 1GB ?
+var form = new multiparty.Form(options)
+form.maxFieldsSize = 1024 * 1024 * 1024;
+6. 在 NodeJS 'formidable' 與 'multiparty' 函式庫中，要分別如何取得實際上傳的檔案大小?
+formidable
+form.on('file', function(field, file) {
+        console.log(file.size);
+    });
+multiparty
+form.on(‘file‘, (name, file) => {
+        console.log(file.size);
+    });
