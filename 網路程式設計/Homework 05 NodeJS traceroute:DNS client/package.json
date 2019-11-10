@@ -1,0 +1,14 @@
+{
+  "name": "hw5",
+  "version": "1.0.0",
+  "description": "hw5",
+  "main": "404411117.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nodejs-traceroute": "^1.1.1"
+  }
+}

@@ -1,0 +1,39 @@
+The objective of this assignment is to create a traceroute+dns client NodeJS program that can  traceroute multiple (at least two) destination IPs at the same time. For a given set of destination IPs, the client program should be able to traceroute and display all recognizable intermediate IPs and convert those IPs into readable hostname by DNS queries. NodeJS libraries used are restricted to the following set of libraries: nodejs-traceroute, dns, validator, and tree-kill. Libraries such as validator and tree-kill are optional. 
+
+Issues to be resolved:
+
+1. nodejs-traceroute is just an interface to the underlying traceroute or tracert program, so, make sure your system has installed either program already.
+
+2. traceroute and tracert programs tend to 'stuck' in a long trace, so, placing the trace program in a function call and setting up a hard time limit to this function call is one way to un-stuck the situation.
+
+3. Running multiple traceroute programs at the same time, one way to discern the returned IP address from different destinations is needed. One possible solution is to utilize the process id returned at the beginning of a traceroute destination.
+
+4. Use the following list of IPs to demonstrate the validity of completed program.
+
+190.37.198.2; 72.27.189.3; 169.1.102.4; 178.74.25.5
+
+Note: traceroute/tracert may return private IPs at some point, thus, before using the returned ip to query DNS,
+
+a checking against three private IP sub-nets should be done first to make sure sending out valid DNS query.
+
+Three private IP sub-nets: 10.0.0.0 - 10.255.255.255, 172.16.0.0 - 172.31.0.0, 192.168.0.0 - 192.168.255.255
+
+
+
+本次作業的目的是建立一個 traceroute+dns 的客戶端NodeJS程式。可用於同時尋找由本地端到兩個以上的目的地IP位址路徑中的所有選徑器IP位址。由給定的幾組目標IP位址，本客戶端程式可以循著路徑將所有可辨別的IP位址藉由DNS查詢得到機器名稱。所使用的NodeJS函式庫僅限於以下幾個：nodejs-traceroute, dns, validator, and tree-kill. 其中　validator 與 tree-kill 是可用可不用的選項。
+
+待解決的議題：
+
+1. nodejs-traceroute 只是一個前端程式介面，其真正用於循跡的程式是系統中已安裝的 traceroute 或 tracert程式。因此要使用nodejs-traceroute前先確定系統中是否有先安裝好traceroute 或 tracert。
+
+2. traceroute 或 tracert 程式往往會在循跡過程中卡住，解決方法是將整個循跡成是用函式包裝起來後，用另一個函式檢查是否有正常結束，這個檢查函式用計時器設定在某一時限後執行，若屆時檢查循跡程式尚未完成，就主動結束循跡程式。如此就不會讓單一循跡程式卡住。
+
+3. 同時執行多個循跡程式時要辨別不同目的IP位址的循跡，可能的解決方案是靠一開始循跡時回傳的 pid 。
+
+4. 請使用以下幾個IP來測試程式碼：
+
+190.37.198.2; 72.27.189.3; 169.1.102.4; 178.74.25.5
+
+
+
+注意：traceroute/tracert　可能回傳私網IP，因此在送出查詢DNS前要先檢查回傳的IP是不是屬於三個私網網段。 三段私網網址；　10.0.0.0 - 10.255.255.255, 172.16.0.0 - 172.31.0.0, 192.168.0.0 - 192.168.255.255
