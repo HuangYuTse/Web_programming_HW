@@ -1,0 +1,121 @@
+The objective of this assignment is to query one IP geolocation server and place results in a JS file to be incorporated later in a HTML file.  Inputs to the query are a set of IP address strings. An example IP geolocation query uses the following URL : 
+
+https://api.ipgeolocation.io/ipgeo?ip=163.13.129.174
+the return value from the above query URL is :
+
+{
+ "ip": "163.13.129.174",
+ "hostname": "163.13.129.174",
+ "continent_code": "AS",
+ "continent_name": "Asia",
+ "country_code2": "TW",
+ "country_code3": "TWN",
+ "country_name": "Taiwan",
+ "country_capital": "Taipei",
+ "state_prov": "Taiwan",
+ "district": "Neihu District",
+ "city": "Taipei City",
+ "zipcode": "114",
+ "latitude": "25.09110",
+ "longitude": "121.56000",
+ "geoname_id": "1676691",
+ "is_eu": false,
+ "calling_code": "+886",
+ "country_tld": ".tw",
+ "languages": "zh-TW,zh,nan,hak",
+ "country_flag": "https://ipgeolocation.io/static/flags/tw_64.png",
+ "isp": "Taiwan Academic Network (TANet) Information Center",
+ "connection_type": "",
+ "organization": "Taiwan Academic Network (TANet) Information Center",
+ "asn": "AS1659",
+ "currency": {
+ "name": "New Taiwan Dollar",
+ "code": "TWD"
+ "symbol": "NT$"
+ },
+ "time_zone": {
+ "name":"Asia/Taipei",
+ "offset": "8.0",
+ "current_time": "2019-10-22 13:39:14.597+0800",
+ "current_time_unix": "1571722754.597",
+ "is_dst": "false",
+ "dst_savings": "0.0"
+ }
+}
+From the returned JSON data, only six fields are needed : country_name, ip, city, longitude, latitude, and isp. Please print those information out in JSON format. For example, the above query result will be placed in the following form:
+
+   {
+     "country": "Taiwan",
+     "city": "Taipei City",
+     "ip": "163.13.129.174",
+     "isp": "Taiwan Academic Network (TANet) Information Center",
+     "lat": 25.09110,
+     "lng": 121.56000
+   }
+Place all query results in an array and call this array markers.
+
+The final output is in the following format when placed within the example world map html file.
+
+markers = [{IP01}, {IP02}, ... ] 
+Please submit the query client program only.
+
+本次作業的目標是寫一個由給定IP位址查詢大地座標的客戶端程式。輸入是一串的IP位址，可以是字串存放在陣列中。以下是使用查詢 URL 查 163.13.129.174 的範例。
+
+https://api.ipgeolocation.io/ipgeo?ip=163.13.129.174
+以上查詢範例會回傳如下所示 JSON格式的物件：
+
+{
+ "ip": "163.13.129.174",
+ "hostname": "163.13.129.174",
+ "continent_code": "AS",
+ "continent_name": "Asia",
+ "country_code2": "TW",
+ "country_code3": "TWN",
+ "country_name": "Taiwan",
+ "country_capital": "Taipei",
+ "state_prov": "Taiwan",
+ "district": "Neihu District",
+ "city": "Taipei City",
+ "zipcode": "114",
+ "latitude": "25.09110",
+ "longitude": "121.56000",
+ "geoname_id": "1676691",
+ "is_eu": false,
+ "calling_code": "+886",
+ "country_tld": ".tw",
+ "languages": "zh-TW,zh,nan,hak",
+ "country_flag": "https://ipgeolocation.io/static/flags/tw_64.png",
+ "isp": "Taiwan Academic Network (TANet) Information Center",
+ "connection_type": "",
+ "organization": "Taiwan Academic Network (TANet) Information Center",
+ "asn": "AS1659",
+ "currency": {
+ "name": "New Taiwan Dollar",
+ "code": "TWD"
+ "symbol": "NT$"
+ },
+ "time_zone": {
+ "name":"Asia/Taipei",
+ "offset": "8.0",
+ "current_time": "2019-10-22 13:39:14.597+0800",
+ "current_time_unix": "1571722754.597",
+ "is_dst": "false",
+ "dst_savings": "0.0"
+ }
+}
+回傳物件中，只需要其中的六個欄位：country_name, ip, city, longitude, latitude, and isp. 將這些欄位以JSON格式印出，形式如下方所示：
+
+   {
+     "country": "Taiwan",
+     "city": "Taipei City",
+     "ip": "163.13.129.174",
+     "isp": "Taiwan Academic Network (TANet) Information Center",
+     "lat": 25.09110,
+     "lng": 121.56000
+   }
+將所有查詢的結果物件放在陣列中，並且稱這個陣列變數為 markers.
+
+再將所有結果放在世界地圖的 html 檔案中，用瀏覽器打開。
+
+markers = [{IP01}, {IP02}, ... ] 
+只需上傳客戶端程式碼。
