@@ -2,7 +2,7 @@ const formidable = require('formidable');
 const http = require('http');
 const fs   = require('fs');
 const util = require('util'); // only used for display file info in util.inspect()
- path = require("path") // 找到目前檔案位置
+const path = require("path") // 找到目前檔案位置
 var pathnow = path.join(__dirname, 'test');// 資料夾test內存放
 http.createServer(function(req, res) {
   if (req.url == '/upload' && req.method.toLowerCase() == 'post') { // parse a file upload

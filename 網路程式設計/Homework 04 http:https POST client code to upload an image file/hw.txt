@@ -1,0 +1,17 @@
+The objective of this homework is to create a NodeJS client code that can upload an image file to the server code in Homework 03.
+
+1. Modules used in the client code are restricted to: http, https, fs, request
+
+2. Document for 'request' module is in: https://github.com/request/request#multipartform-data-multipart-form-uploads
+
+3. Submit only the client code.
+
+
+
+這次作業的目標是以NodeJS寫出可上傳圖片檔案到作業三伺服器中的客戶端程式碼。
+
+1. 至多只能使用四種 NodeJS 函式庫:  http, https, fs, request
+
+2. request函式庫的說明文件在 https://github.com/request/request#multipartform-data-multipart-form-uploads
+
+3. 只需上傳客戶端程式碼。
