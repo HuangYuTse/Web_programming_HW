@@ -1,0 +1,57 @@
+The objective of this assignment is to build a prototype for multi-user interactive application.
+
+The server code conducts the following actions:
+
+1. When a client opens the server URI by a web browser, the server delivers a login page to ask for login id and password.
+
+2. The server checks and accepts the user id and password, then sends the client  (denote as client A) a web page containing a map that allows the user to click on. The center of the map is the coordinate of the client's ip geolocation.
+
+3. The web browser sends the click location back to the server while register the location on the map with a marker.
+
+4. The server records the click location from client A and broadcast the location to all other clients online.
+
+5. Client web browser receives updated information from server all coordinates of other clients and mark those locations on their map with different marker for different client.
+
+
+
+本作業的目標是建立多人互動網頁介面。伺服器端的程式碼
+
+1. 當收到瀏覽器要求第一個網頁時，送出登入介面網頁給瀏覽器。使用者輸入帳號與密碼送出給伺服器登入。
+
+2. 伺服器驗證帳號與密碼，若是成功，送出內含地圖和使用介面的網頁給瀏覽器。
+
+3. 使用者在瀏覽器中點擊地圖上的點後，會標示符號在地圖上，並將標示座標與使用者資訊送回到伺服器。
+
+4. 伺服器紀錄使用者點擊的位置座標與使用者資訊後，廣播至所有已登入使用者的瀏覽器。
+
+5. 瀏覽器收到伺服器廣播出其他使用者點擊座標與使用者資訊後，將不同使用者用不同的標籤標示在地圖上。
+
+
+
+提示與困難點:
+
+
+
+A. 先假設在伺服器中已經建好使用者帳號密碼，在第一個網頁中如何安全地傳遞使用者輸入的帳號與密碼讓伺服器驗證?
+
+B. 使用帳號與密碼驗證使用者時，最好不要將密碼直接在網路傳遞。因此傳遞加密過的密碼或是完全不傳遞密碼，都是較好的方式驗證使用者。
+
+  b.01. 加密機制有兩種做法: 1. 共用金鑰或是 2.公開金鑰與私密金鑰方式。
+
+  b.02. 共用金鑰範例可參考 https://stackoverflow.com/questions/18279141/javascript-string-encryption-and-decryption
+
+  http://jsfiddle.net/kein1945/M9K2c/
+
+  b.03. 公鑰/私鑰範例可參考 https://medium.com/sharenowtech/high-speed-public-key-cryptography-in-javascript-part-1-3eefb6f91f77
+
+  b.04. 有關傳遞 password  https://auth0.com/blog/hashing-passwords-one-way-road-to-security/
+
+  https://support.1password.com/authentication-encryption/
+
+  https://blog.cryptographyengineering.com/2018/10/19/lets-talk-about-pake/
+
+ 
+
+C. 傳遞使用者點擊位置與使用者帳號給伺服器，和由伺服器廣播傳遞使用者帳號與點擊位置資訊，在這個作業中可以不用加密，但是大家要謹記真正開發成應用程式時，要注意資訊安全機制。
+
+D. 伺服器端要保持所有已經登入的使用者帳號與連線管道，同時也要設計如何登出機制。(使用 Websocket 或是 socket.io 不同處在於 socket.io 具有 heartbeats、timeouts 與 disconnection 等功能但是原生的 WebSocket API 沒有這些功能。)
