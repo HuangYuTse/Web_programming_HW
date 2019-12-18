@@ -1,0 +1,9 @@
+The objective of this assignment is to create a web server that streams animated gif to the client. 
+
+If a web page contains a picture element by specifying the picture URL, the client will sent a request to retrieve the image file and display in the browser. If the picture element contains a URL that specified an animated gif file, a sequence of pictures will be displayed in the browser. Animated gif file contains unspecified number of frames (pictures), therefore, the server can streaming a sequence of pictures to the client.
+
+In this assignment, the animated gif is composed of a sequence of QR codes that were generated in the server.
+
+1. Try to create a series of QR code images with nodeJS code. The content of QR code can be the current date and time, each image is separated by 1 second.
+
+2. Write a nodeJS code that combines the QR code images into an animated GIF file.

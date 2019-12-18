@@ -1,0 +1,77 @@
+本次作業是有關用NodeJS建立Proxy server的議題，基本上是用問答方式。
+
+首先看網路上其他相關網頁：
+
+1. A HTTP Proxy Server in 20 Lines of node.js Code https://catonmat.net/http-proxy-in-nodejs
+
+2. node-http-proxy code https://github.com/http-party/node-http-proxy
+
+https://github.com/tanhauhau/node-proxy-server
+
+3. Build a Node.JS HTTP Proxy Server in Under 10 minutes https://www.proxyrack.com/create-your-own-node-js-http-proxy-server-in-under-10-minutes/
+
+4. How to create a simple http proxy in node.js? https://stackoverflow.com/questions/20351637/how-to-create-a-simple-http-proxy-in-node-js
+
+題外話： Online Game https://gitlab.com/veloren/veloren
+
+所以建立 http proxy server 感覺是相當容易的事，是嗎？！
+
+首先要定義問題，什麼是 HTTP proxy server？
+
+簡單解釋：An HTTP Proxy serves two intermediary roles as an HTTP Client and an HTTP Server for security, management, and caching functionality. The HTTP Proxy routes HTTP Client requests from a Web browser to the Internet, while supporting the caching of Internet data.
+
+較複雜的說明：
+
+A proxy server is either a computer system server or an application server that serves like a connection for requests from people seeking information from other servers. Simply put, the HTTP Proxy acts like a middle man between people seeking information or any resources at all.
+
+When you connect to the proxy server in a bid to find a service, the proxy server then checks the request so as to make it simple and less complex.
+
+An HTTP Proxy basically serves as a gateway between the user and the internet. It is used to cache files, and web pages which makes it easy for you to access them.
+
+The HTTP Proxy has two roles it plays one of which is as an HTTP Client and the other as an HTTP Server which is for management, security and caching. It acts as a server when it accepts requests from the users and then it acts as a client to the remote servers it then connects to in a bid to get information (when the information is not readily available in the cache).
+
+Also, the HTTP Proxy is used by numerous browsers to cache your favorite websites (websites you visit more frequently) just so you can access them without necessarily having to refresh or download the page all over again. You know when you type in the URL for one website you want to visit, then it pops up automatically (if the website address is in the cache) without waiting for it to fully download, that is the HTTP Proxy server at work.
+
+Advantages of HTTP Proxy Server:
+
+1. Security
+
+We all know that there are some malicious websites flooding the internet space nowadays. This proxy server works in a way that the admin can block the users from visiting websites which pose or will later become a threat.
+
+2. Hidden IP Address
+
+This is another of the benefits of using this proxy server. This works in a way that whenever you visit a website, the user?s information (your information) will not be logged on the website, rather, the website would log the IP Address of the proxy server. This means that you are anonymous whenever you browse online. And this will also protect you firm cybercriminals or hackers that may want to have access into personal stuff via your IP Address.
+
+3. Easy browsing
+
+As mentioned earlier that the HTTP Proxy server keeps your favorite websites in cache, which means that once you visit a particular website or webpage, the server then stores them for later use by you and when a page already cached is requested, it takes little or no time to display.
+
+In a case where the web page you request for is not in the cache, the process might take longer just because it will have to first request from the internet before displaying what you are looking for.
+
+4. Unrestricted Access
+
+We all know that there are some contents online that you cannot access if you are not within the locations allowed by such content (geo-restrictions). But as mentioned above (Hidden IP Address), that the proxy server helps to hide the user’s IP Address, you have unrestricted access to any website even if they are not within your geo-location.
+
+Also, you can use a proxy server to bypass network restrictions (restrictions that won’t allow you visit some websites) whether at school or at work.
+
+Disadvantages of HTTP Proxy Server:
+
+The only downside to an HTTP Proxy is that your browsing activities might get slowed down due to the cache build up. So, to access fast browsing, you have to clear cache often.
+
+基本上，HTTP proxy 的用處：
+
+1. 控制員工或小孩對網路網頁的存取。
+
+2. 節省頻寬與增進網頁讀取效能。
+
+3. 保護個人隱私。
+
+4. 增強網路資訊安全機制。
+
+5. 取用限制性網路資源。
+
+請回答以下各問題：
+
+Q1: 請詳細描述如何使用http proxy 進行 「控制員工或小孩對網路網頁的存取」？
+
+Q2: 一般 http proxy 所支援的http request method有哪些？哪些不會支援？
