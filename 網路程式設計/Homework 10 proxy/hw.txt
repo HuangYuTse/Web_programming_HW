@@ -12,7 +12,7 @@ https://github.com/tanhauhau/node-proxy-server
 
 4. How to create a simple http proxy in node.js? https://stackoverflow.com/questions/20351637/how-to-create-a-simple-http-proxy-in-node-js
 
-題外話： Online Game https://gitlab.com/veloren/veloren
+5. https://chromium.googlesource.com/infra/third_party/npm_modules/+/e7396f39cd50de4419362fc2bc48360cb85ce555/node_modules/karma/node_modules/http-proxy/README.md
 
 所以建立 http proxy server 感覺是相當容易的事，是嗎？！
 
@@ -75,3 +75,13 @@ The only downside to an HTTP Proxy is that your browsing activities might get sl
 Q1: 請詳細描述如何使用http proxy 進行 「控制員工或小孩對網路網頁的存取」？
 
 Q2: 一般 http proxy 所支援的http request method有哪些？哪些不會支援？
+
+Q3: http proxy 是否支援 websocket 讓 web server 與 client 間保持連線？
+
+Q4: 若是可以支援 websocket 連線，請簡單描述 http proxy server 要加上什麼架構？
+
+
+
+
+
+題外話： Online Game https://gitlab.com/veloren/veloren

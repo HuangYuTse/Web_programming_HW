@@ -2,13 +2,21 @@
   <div id="formContent">
     <!-- Tabs Titles -->
     <h1 class="active"> Sign In </h2>
-    <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-      </br>
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-      </br>
-      <input type="submit" class="fadeIn fourth" value="Log In">
+    <script src="http://cdn.bootcss.com/blueimp-md5/1.1.0/js/md5.js"></script> 
+    <script type="text/javascript">
+    function pwd_handler(form)
+    {
+            if (form.password.value != '')
+            {
+                form.md5password.value = md5(form.password.value);
+                form.password.value = '';
+            }
+    }
+    </script>
+    
+    <form action="" method="post" onsubmit="pwd_handler(this);">
+        <input type="text" name="username" />
+        <input type="password" name="password" />
+        <input type="hidden" name="md5password" value="" />
+        <input type="submit" value="Log in" />
     </form>
-  </div>
-</div>
