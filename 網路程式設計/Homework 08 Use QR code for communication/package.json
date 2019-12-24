@@ -1,0 +1,22 @@
+{
+  "name": "homework-08",
+  "version": "1.0.0",
+  "description": "hw8",
+  "main": "404411117.js",
+  "scripts": {
+    "test": "node 404411117.js"
+  },
+  "keywords": [
+    "QR",
+    "code"
+  ],
+  "author": "eric",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^2.6.1",
+    "date-and-time": "^0.11.1",
+    "gifencoder": "^2.0.1",
+    "png-file-stream": "^1.2.1",
+    "qrcode": "^1.4.4"
+  }
+}
