@@ -1,0 +1,16 @@
+{
+  "name": "homework-09",
+  "version": "1.0.0",
+  "description": "homework-09",
+  "main": "NULL",
+  "scripts": {
+    "code1": "node code1.js",
+    "code2": "node code2.js",
+    "code3": "node code3.js"
+  },
+  "author": "eric",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
