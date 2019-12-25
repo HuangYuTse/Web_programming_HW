@@ -4,6 +4,7 @@
   "description": "homework-09",
   "main": "NULL",
   "scripts": {
+    "mkdir":"mkdir Data03&mkdir Data02&mkdir Data01",
     "code1": "node code1.js",
     "code2": "node code2.js",
     "code3": "node code3.js"
