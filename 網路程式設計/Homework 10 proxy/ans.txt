@@ -1,0 +1,21 @@
+Q1.
+代理伺服器的設定中，通常包括一個「防火牆」，可以在防火牆直接設定禁止訪問的網站，甚至是用關鍵字下去封鎖，而且經過代理伺服器，伺服器管理者隨時都能對使用者進行監控
+Q2.
+GET POST PUT DELETE
+都可以用
+OPTIONS
+用於獲取目的資源所支持的通信選項，所以應該能用
+TRACE
+方法會與指定資源標明的伺服器之間，執行迴路返回測試，這要看你用的proxy會擋你的TRACE嗎
+PATCH
+用於對資源進行部分修改，單純看你訪問伺服器是否允許
+CONNECT 
+方法會和指定資源標明的伺服器之間，建立隧道（tunnel），通常用在連到代理伺服器時，所以應該沒辦法再經過proxy再connect到其他地方
+Q3.
+支援
+Q4.
+以下是 node.js http proxy 的處理方式
+Websockets are handled automatically when using httpProxy.createServer(), however, if you supply a callback inside the createServer call, you will need to handle the ‘upgrade’ proxy event yourself
+server.on('upgrade', function (req, socket, head) {
+    server.proxy.proxyWebSocketRequest(req, socket, head);
+}
